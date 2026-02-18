@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: jettison-api-e2e-test
+  namespace: wavesmp
+spec:
+  args:
+  - name: service-name
+  metrics:
+  - name: jettison-api-e2e-test
+    provider:
+      job:
+        spec:
+          backoffLimit: 1
+          activeDeadlineSeconds: 600
+          template:
+            spec:
+              containers:
+              - name: jettison-api-e2e-test
+                image: ghcr.io/jettisonproj/jettison-controller-integration-test:917d4169e464b2d46f609b1d32cd418688001d2f
+                # todo need to target the specified service name
+                # env:
+                # - name: JETTISON_API_TEST_HOST
+                #   value: "{{args.service-name}}"
+              restartPolicy: Never

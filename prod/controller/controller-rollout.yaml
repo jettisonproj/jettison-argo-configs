@@ -1,0 +1,109 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  namespace: jettisonproj
+  name: jettison-controller-manager
+  labels:
+    app.kubernetes.io/instance: jettison-controller-manager
+    app.kubernetes.io/version: 917d4169e464b2d46f609b1d32cd418688001d2f
+spec:
+  replicas: 2
+  strategy:
+    canary:
+      canaryService: jettison-api-prod-canary-service # our created canary service
+      stableService: jettison-api-prod-stable-service # our created stable service
+      dynamicStableScale: true # dynamically scale down the old versions
+      trafficRouting:
+        plugins:
+          argoproj-labs/gatewayAPI:
+            httpRoute: jettison-api-http # our created httproute
+            namespace: jettisonproj
+      steps:
+      # 0) Set canary scale to 50% of spec.replicas without changing traffic weight
+      # (supported only with trafficRouting)
+      - setCanaryScale:
+          weight: 50
+      # 1) Run integration test on the canary service
+      - analysis:
+          templates:
+          - templateName: jettison-api-e2e-test # todo
+          args:
+          - name: service-name
+            value: jettison-api-prod-canary-service
+      # 2) Pause 1m after integation test
+      - pause:
+          duration: 1m
+      # 3) Sets the ratio of canary ReplicaSet to 50%
+      - setWeight: 50
+      # 4) Set canary scale to match the canary traffic weight (default behavior)
+      - setCanaryScale:
+          matchTrafficWeight: true
+      # 5) Pause for 1 minute while half rollouts completes
+      - pause:
+          duration: 1m
+      # 6) Increase the ratio of canary ReplicaSet to 100%
+      - setWeight: 100
+      # 7) Pause for 1m after full scale up
+      - pause:
+          duration: 1m
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      control-plane: controller-manager
+  template:
+    metadata:
+      labels:
+        control-plane: controller-manager
+    spec:
+      containers:
+      - args:
+        - --metrics-bind-address=:8443
+        - --leader-elect
+        - --health-probe-bind-address=:8081
+        - --workflow-mysql-address=root:root@tcp(mysql.mysql:3306)/argo
+        command:
+        - /manager
+        image: ghcr.io/jettisonproj/jettison-controller:917d4169e464b2d46f609b1d32cd418688001d2f
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        name: manager
+        ports:
+        - containerPort: 2846
+          name: http
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - mountPath: /github-key
+          name: github-key
+        - mountPath: /argocd-jettisonproj-secret
+          name: argocd-jettisonproj-secret
+      serviceAccountName: jettison-controller-manager
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - name: github-key
+        secret:
+          secretName: github-key
+      - name: argocd-jettisonproj-secret
+        secret:
+          secretName: argocd-jettisonproj-secret
