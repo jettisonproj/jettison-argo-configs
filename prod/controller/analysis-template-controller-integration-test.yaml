@@ -17,7 +17,7 @@ spec:
             spec:
               containers:
               - name: jettison-api-e2e-test
-                image: ghcr.io/jettisonproj/jettison-controller-integration-test:917d4169e464b2d46f609b1d32cd418688001d2f
+                image: ghcr.io/jettisonproj/jettison-controller-integration-test:7ea16c576f6976e1c0d911e1e5ce6cab04c2433e
                 # todo need to target the specified service name
                 # env:
                 # - name: JETTISON_API_TEST_HOST
