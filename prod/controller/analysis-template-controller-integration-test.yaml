@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
   name: jettison-api-e2e-test
-  namespace: wavesmp
+  namespace: jettisonproj
 spec:
   args:
   - name: service-name
