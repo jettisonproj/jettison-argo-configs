@@ -26,7 +26,7 @@ spec:
       # 1) Run integration test on the canary service
       - analysis:
           templates:
-          - templateName: jettison-ui-integration-test
+          - templateName: jettison-ui-e2e-test
           args:
           - name: service-name
             value: jettison-ui-prod-canary-service

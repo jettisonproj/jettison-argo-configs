@@ -1,13 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
-  name: jettison-ui-integration-test
+  # Ensure a short name is used
+  # See https://github.com/argoproj/argo-rollouts/issues/795
+  name: jettison-ui-e2e-test
   namespace: jettisonproj
 spec:
   args:
   - name: service-name
   metrics:
-  - name: jettison-ui-integration-test
+  - name: jettison-ui-e2e-test
     provider:
       job:
         spec:
@@ -16,7 +18,7 @@ spec:
           template:
             spec:
               containers:
-              - name: jettison-ui-integration-test
+              - name: jettison-ui-e2e-test
                 image: ghcr.io/jettisonproj/jettison-ui-integration-test:271e096b3c6e4599d700862abbd709e527ac7a44
                 args:
                 - "./integration-test.sh"
