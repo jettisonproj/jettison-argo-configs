@@ -15,6 +15,7 @@ spec:
           activeDeadlineSeconds: 600
           template:
             spec:
+              serviceAccountName: jettison-api-e2e-sa
               containers:
               - name: jettison-api-e2e-test
                 image: ghcr.io/jettisonproj/jettison-controller-integration-test:bf7f938edf82532252668e2399440425d46f27bb
