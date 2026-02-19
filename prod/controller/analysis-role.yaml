@@ -1,0 +1,34 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: jettisonproj
+  name: jettison-api-e2e-role
+rules:
+# Validates sensors created from flows
+- apiGroups:
+    - argoproj.io
+  resources:
+    - sensors
+  verbs:
+    - get
+    - list
+    - watch
+# Creates flows for testing
+- apiGroups:
+  - workflows.jettisonproj.io
+  resources:
+  - flows
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - workflows.jettisonproj.io
+  resources:
+  - flows/status
+  verbs:
+  - get
