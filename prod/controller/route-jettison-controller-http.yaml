@@ -1,0 +1,19 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  namespace: jettisonproj
+  name: jettison-api-http
+spec:
+  parentRefs:
+  - name: jettison-api-service
+    kind: Service
+    group: core
+    port: 2846
+  rules:
+  - backendRefs:
+    - name: jettison-api-prod-canary-service
+      kind: Service
+      port: 2846
+    - name: jettison-api-prod-stable-service
+      kind: Service
+      port: 2846
