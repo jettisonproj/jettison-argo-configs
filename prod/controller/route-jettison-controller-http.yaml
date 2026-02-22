@@ -7,7 +7,7 @@ spec:
   parentRefs:
   - name: jettison-api-service
     kind: Service
-    group: core
+    group: ""
     port: 2846
   rules:
   - backendRefs:
