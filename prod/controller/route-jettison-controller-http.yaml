@@ -8,12 +8,12 @@ spec:
   - name: jettison-api-service
     kind: Service
     group: ""
-    port: 2846
+    port: 80
   rules:
   - backendRefs:
     - name: jettison-api-prod-canary-service
       kind: Service
-      port: 2846
+      port: 80
     - name: jettison-api-prod-stable-service
       kind: Service
-      port: 2846
+      port: 80
