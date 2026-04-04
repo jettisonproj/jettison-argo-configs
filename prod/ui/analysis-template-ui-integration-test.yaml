@@ -19,7 +19,7 @@ spec:
             spec:
               containers:
               - name: jettison-ui-e2e-test
-                image: ghcr.io/jettisonproj/jettison-ui-integration-test:65dce15fedd81816b287f6b444bc53ae92651bd6
+                image: ghcr.io/jettisonproj/jettison-ui-integration-test:a8629a37181c4318f6252cbd48ce2550b1c977e6
                 args:
                 - "./integration-test.sh"
                 - "http://{{args.service-name}}"
