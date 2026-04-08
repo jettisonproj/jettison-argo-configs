@@ -20,7 +20,9 @@ spec:
               containers:
               - name: jettison-ui-e2e-test
                 image: ghcr.io/jettisonproj/jettison-ui-integration-test:a8629a37181c4318f6252cbd48ce2550b1c977e6
-                args:
-                - "./integration-test.sh"
-                - "http://{{args.service-name}}"
+                env:
+                - name: PLAYWRIGHT_BASE_URL
+                  value: "http://{{args.service-name}}"
+                - name: CI
+                  value: "true"
               restartPolicy: Never
