@@ -5,7 +5,7 @@ metadata:
   name: jettison-ui-prod
   labels:
     app.kubernetes.io/instance: jettison-ui-prod
-    app.kubernetes.io/version: e1714b68f3d53668d3d77e9bbe19225e8e479f6d
+    app.kubernetes.io/version: 850cf2bf7d3c3af2d9926ba0b91cc8b38631cd91
 spec:
   replicas: 2
   strategy:
@@ -57,7 +57,7 @@ spec:
         app: jettison-ui-prod
     spec:
       containers:
-      - image: ghcr.io/jettisonproj/jettison-ui:e1714b68f3d53668d3d77e9bbe19225e8e479f6d
+      - image: ghcr.io/jettisonproj/jettison-ui:850cf2bf7d3c3af2d9926ba0b91cc8b38631cd91
         name: jettison-ui
         ports:
         - containerPort: 80
