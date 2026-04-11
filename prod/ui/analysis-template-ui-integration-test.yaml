@@ -19,7 +19,7 @@ spec:
             spec:
               containers:
               - name: jettison-ui-e2e-test
-                image: ghcr.io/jettisonproj/jettison-ui-integration-test:850cf2bf7d3c3af2d9926ba0b91cc8b38631cd91
+                image: ghcr.io/jettisonproj/jettison-ui-integration-test:b99480aaa641c7e6a3850aa3b333fbe4911cd01d
                 env:
                 - name: PLAYWRIGHT_BASE_URL
                   value: "http://{{args.service-name}}"
