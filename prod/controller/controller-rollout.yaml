@@ -5,7 +5,7 @@ metadata:
   name: jettison-controller-manager
   labels:
     app.kubernetes.io/instance: jettison-controller-manager
-    app.kubernetes.io/version: 50a59f470b1e1fb85b8d9ee393621b1e4a31d6c6
+    app.kubernetes.io/version: d3d95297aaa786000485a4469d88108e26a09ead
 spec:
   replicas: 2
   strategy:
@@ -65,7 +65,7 @@ spec:
         - --workflow-mysql-address=root:root@tcp(mysql.mysql:3306)/argo
         command:
         - /manager
-        image: ghcr.io/jettisonproj/jettison-controller:50a59f470b1e1fb85b8d9ee393621b1e4a31d6c6
+        image: ghcr.io/jettisonproj/jettison-controller:d3d95297aaa786000485a4469d88108e26a09ead
         livenessProbe:
           httpGet:
             path: /healthz
