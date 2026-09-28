@@ -19,11 +19,11 @@ spec:
             metadata:
               labels:
                 app: jettison-ui-e2e-test
-                app.kubernetes.io/version: 69afac18f5c07ed256221ec3a0fd656d28ae8c1b
+                app.kubernetes.io/version: 84bc827825e5074c091533b5cc33d48215d70b86
             spec:
               containers:
               - name: jettison-ui-e2e-test
-                image: ghcr.io/jettisonproj/jettison-ui-integration-test:69afac18f5c07ed256221ec3a0fd656d28ae8c1b
+                image: ghcr.io/jettisonproj/jettison-ui-integration-test:84bc827825e5074c091533b5cc33d48215d70b86
                 env:
                 - name: PLAYWRIGHT_BASE_URL
                   value: "http://{{args.service-name}}"
