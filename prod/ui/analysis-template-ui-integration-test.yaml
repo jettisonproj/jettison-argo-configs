@@ -5,6 +5,8 @@ metadata:
   # See https://github.com/argoproj/argo-rollouts/issues/795
   name: jettison-ui-e2e-test
   namespace: jettisonproj
+  labels:
+    app.kubernetes.io/version: 1b70a29a042ee7b110b3caeff54181992a273a90
 spec:
   args:
   - name: service-name
