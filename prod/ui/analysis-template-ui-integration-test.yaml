@@ -8,6 +8,7 @@ metadata:
 spec:
   args:
   - name: service-name
+  - name: app-under-test
   metrics:
   - name: jettison-ui-e2e-test
     provider:
@@ -20,6 +21,7 @@ spec:
               labels:
                 app: jettison-ui-e2e-test
                 app.kubernetes.io/version: c15d75e4d5c0d2c359f1591015a892569eaf56b3
+                jettisonproj.io/app-under-test: "{{args.app-under-test}}"
             spec:
               containers:
               - name: jettison-ui-e2e-test
