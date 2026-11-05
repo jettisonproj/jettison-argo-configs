@@ -55,10 +55,12 @@ spec:
   selector:
     matchLabels:
       app: jettison-ui-prod
+      jettison-app: jettison-ui-prod
   template:
     metadata:
       labels:
         app: jettison-ui-prod
+        jettison-app: jettison-ui-prod
         app.kubernetes.io/version: c15d75e4d5c0d2c359f1591015a892569eaf56b3
     spec:
       containers:

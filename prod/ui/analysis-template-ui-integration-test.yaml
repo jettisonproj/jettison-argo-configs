@@ -22,7 +22,7 @@ spec:
                 app: jettison-ui-e2e-test
                 app.kubernetes.io/version: c15d75e4d5c0d2c359f1591015a892569eaf56b3
                 app-under-test: "{{args.app-under-test}}"
-                jettisonproj.io/app-under-test: "{{args.app-under-test}}"
+                jettison-app: "{{args.app-under-test}}"
             spec:
               containers:
               - name: jettison-ui-e2e-test
