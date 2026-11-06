@@ -30,6 +30,8 @@ spec:
           args:
           - name: service-name
             value: jettison-api-prod-canary-service
+          - name: app-under-test
+            value: jettison-controller-manager
       # 2) Pause 1m after integation test
       - pause:
           duration: 1m
@@ -51,11 +53,14 @@ spec:
     revisions: 2
   selector:
     matchLabels:
-      control-plane: controller-manager
+      app: jettison-controller-manager
+      jettison-app: jettison-controller-manager
   template:
     metadata:
       labels:
-        control-plane: controller-manager
+        app: jettison-controller-manager
+        jettison-app: jettison-controller-manager
+        app.kubernetes.io/version: ea2a79aa71d65021f9f0cb3030eb27a18f788331
     spec:
       containers:
       - args:
