@@ -13,6 +13,12 @@ spec:
       canaryService: jettison-api-prod-canary-service # our created canary service
       stableService: jettison-api-prod-stable-service # our created stable service
       dynamicStableScale: true # dynamically scale down the old versions
+      stableMetadata:
+        labels:
+          role: stable
+      canaryMetadata:
+        labels:
+          role: canary
       trafficRouting:
         plugins:
           argoproj-labs/gatewayAPI:
