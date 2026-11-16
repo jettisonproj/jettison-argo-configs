@@ -115,9 +115,7 @@ spec:
         - mountPath: /argocd-jettisonproj-secret
           name: argocd-jettisonproj-secret
       serviceAccountName: jettison-controller-manager
-      # The termination grace period should be above the "gracefulShutdownTimeout" in:
-      # https://github.com/jettisonproj/jettison-controller/blob/main/cmd/main.go
-      terminationGracePeriodSeconds: 20
+      terminationGracePeriodSeconds: 10
       volumes:
       - name: github-key
         secret:
