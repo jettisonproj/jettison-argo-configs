@@ -4,7 +4,7 @@ metadata:
   name: jettison-api-e2e-test
   namespace: jettisonproj
   labels:
-    app.kubernetes.io/version: ef10bcbb80c87e2eb93b181305c3d219ea90d24d
+    app.kubernetes.io/version: a1d57792abb0933b814849f1b02edd9fe3d501ad
 spec:
   args:
   - name: service-name
@@ -20,14 +20,14 @@ spec:
             metadata:
               labels:
                 app: jettison-api-e2e-test
-                app.kubernetes.io/version: ef10bcbb80c87e2eb93b181305c3d219ea90d24d
+                app.kubernetes.io/version: a1d57792abb0933b814849f1b02edd9fe3d501ad
                 app-under-test: "{{args.app-under-test}}"
                 jettison-app: "{{args.app-under-test}}"
             spec:
               serviceAccountName: jettison-api-e2e-sa
               containers:
               - name: jettison-api-e2e-test
-                image: ghcr.io/jettisonproj/jettison-controller-integration-test:ef10bcbb80c87e2eb93b181305c3d219ea90d24d
+                image: ghcr.io/jettisonproj/jettison-controller-integration-test:a1d57792abb0933b814849f1b02edd9fe3d501ad
                 # todo need to target the specified service name
                 # env:
                 # - name: JETTISON_API_TEST_HOST

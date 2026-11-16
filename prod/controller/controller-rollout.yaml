@@ -5,7 +5,7 @@ metadata:
   name: jettison-controller-manager
   labels:
     app.kubernetes.io/instance: jettison-controller-manager
-    app.kubernetes.io/version: ef10bcbb80c87e2eb93b181305c3d219ea90d24d
+    app.kubernetes.io/version: a1d57792abb0933b814849f1b02edd9fe3d501ad
 spec:
   replicas: 2
   strategy:
@@ -66,7 +66,7 @@ spec:
       labels:
         app: jettison-controller-manager
         jettison-app: jettison-controller-manager
-        app.kubernetes.io/version: ef10bcbb80c87e2eb93b181305c3d219ea90d24d
+        app.kubernetes.io/version: a1d57792abb0933b814849f1b02edd9fe3d501ad
     spec:
       containers:
       - args:
@@ -76,7 +76,7 @@ spec:
         - --workflow-mysql-address=root:root@tcp(mysql.mysql:3306)/argo
         command:
         - /manager
-        image: ghcr.io/jettisonproj/jettison-controller:ef10bcbb80c87e2eb93b181305c3d219ea90d24d
+        image: ghcr.io/jettisonproj/jettison-controller:a1d57792abb0933b814849f1b02edd9fe3d501ad
         env:
         - name: POD_NAME
           valueFrom:
