@@ -6,7 +6,7 @@ metadata:
   name: jettison-ui-e2e-test
   namespace: jettisonproj
   labels:
-    app.kubernetes.io/version: 2b1f8fb2a1eae2a08cbfc92d499870f1cce5de8c
+    app.kubernetes.io/version: d207fd5354bfa52e55781003c12b95e7cfeff4a6
 spec:
   args:
   - name: service-name
@@ -22,13 +22,13 @@ spec:
             metadata:
               labels:
                 app: jettison-ui-e2e-test
-                app.kubernetes.io/version: 2b1f8fb2a1eae2a08cbfc92d499870f1cce5de8c
+                app.kubernetes.io/version: d207fd5354bfa52e55781003c12b95e7cfeff4a6
                 app-under-test: "{{args.app-under-test}}"
                 jettison-app: "{{args.app-under-test}}"
             spec:
               containers:
               - name: jettison-ui-e2e-test
-                image: ghcr.io/jettisonproj/jettison-ui-integration-test:2b1f8fb2a1eae2a08cbfc92d499870f1cce5de8c
+                image: ghcr.io/jettisonproj/jettison-ui-integration-test:d207fd5354bfa52e55781003c12b95e7cfeff4a6
                 env:
                 - name: PLAYWRIGHT_BASE_URL
                   value: "http://{{args.service-name}}"
